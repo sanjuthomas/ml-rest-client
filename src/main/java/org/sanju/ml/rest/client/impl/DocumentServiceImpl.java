@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.util.EntityUtils;
 import org.sanju.ml.RequestBuilder;
 import org.sanju.ml.RequestProcessor;
 import org.sanju.ml.rest.Payload;
@@ -24,10 +23,10 @@ public class DocumentServiceImpl implements DocumentService{
 	}
 
 	@Override
-	public String save(final Payload<?> payload) throws IOException, URISyntaxException {
+	public int save(final Payload<?> payload) throws IOException, URISyntaxException {
 
 		final HttpPut httpPut = RequestBuilder.put(payload);
-		return EntityUtils.toString(RequestProcessor.process(httpPut).getEntity());
+		return RequestProcessor.process(httpPut).getStatusLine().getStatusCode();
 	}
 
 	@Override

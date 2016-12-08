@@ -13,7 +13,7 @@ import org.sanju.ml.rest.Payload;
 public interface DocumentService {
 
 	Object get(String uri, Class<?> returnType);
-	String save(Payload<?> payload) throws IOException, URISyntaxException;
+	int save(Payload<?> payload) throws IOException, URISyntaxException;
 	void delete(String uri);
 
 }
