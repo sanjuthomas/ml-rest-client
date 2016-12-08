@@ -1,7 +1,11 @@
 package org.sanju.ml.rest;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import org.apache.http.entity.ContentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *
@@ -10,11 +14,17 @@ import java.util.Map;
  */
 public class Payload<T>{
 
-	private final Map<String, String> urlParams = new LinkedHashMap<>();
+	private static final Logger logger = LoggerFactory.getLogger(Payload.class);
+	private static final ObjectMapper MAPPER = new ObjectMapper();
 	private T entity;
+	private final ContentType DEFAULT_CONTENT_TYPE = ContentType.APPLICATION_JSON;
 
-	public void addUrlParam(final String key, final String value){
-		this.urlParams.put(key, value);
+	public Payload(final T t){
+		this.entity = t;
+	}
+
+	public String getUri(){
+		return this.entity.toString();
 	}
 
 	public T getEntity() {
@@ -23,6 +33,19 @@ public class Payload<T>{
 
 	public void setEntity(final T entity) {
 		this.entity = entity;
+	}
+
+	public ContentType getContentType() {
+		return this.DEFAULT_CONTENT_TYPE;
+	}
+
+	public String json(){
+		try {
+			return MAPPER.writeValueAsString(this.entity);
+		} catch (final JsonProcessingException e) {
+			logger.error("JSON conversion failed", e);
+		}
+		return null;
 	}
 
 }

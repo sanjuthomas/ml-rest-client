@@ -54,19 +54,16 @@ public class QuoteRequest {
 		this.quantity = quantity;
 	}
 
-	public String uri() {
-		return uri(this.client.getId(), this.client.getAccount().getId(), this.getId());
-	}
-
-	public static String uri(final String clientId, final String accountId, final String quoteId){
+	@Override
+	public String toString() {
 		final StringBuilder builder = new StringBuilder();
 		builder.append("/");
-		builder.append(clientId);
+		builder.append(this.client.getId());
 		builder.append("/");
-		builder.append(accountId);
+		builder.append(this.client.getAccount().getId());
 		builder.append("/");
-		builder.append(quoteId);
-		builder.append(".xml");
+		builder.append(this.client.getId());
+		builder.append(".json");
 		return builder.toString();
 	}
 

@@ -14,31 +14,26 @@ public class QuoteServiceImpl extends DocumentServiceImpl implements QuoteServic
 
 	@Override
 	public void save(final QuoteRequest quoteRequest) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public QuoteRequest find(final String clientId, final String accountId, final String quoteId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<QuoteRequest> find(final String clientId, final String accountId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<QuoteRequest> find(final String clientId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void delete(final String clientId, final String accountId, final String quoteId) {
-		// TODO Auto-generated method stub
 
 	}
 
