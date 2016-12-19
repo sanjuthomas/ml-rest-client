@@ -3,6 +3,7 @@ package org.sanju.ml.rest.client;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.apache.http.client.ClientProtocolException;
 import org.sanju.ml.rest.Payload;
 
 /**
@@ -12,8 +13,8 @@ import org.sanju.ml.rest.Payload;
  */
 public interface DocumentService {
 
-	Object get(String uri, Class<?> returnType);
+	Object get(String uri) throws ClientProtocolException, IOException, URISyntaxException;
 	int save(Payload<?> payload) throws IOException, URISyntaxException;
-	void delete(String uri);
+	int delete(String uri) throws ClientProtocolException, IOException, URISyntaxException;
 
 }

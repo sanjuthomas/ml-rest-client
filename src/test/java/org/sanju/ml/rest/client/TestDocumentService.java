@@ -3,6 +3,9 @@ package org.sanju.ml.rest.client;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.apache.http.client.ClientProtocolException;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.dto.Account;
@@ -11,6 +14,12 @@ import org.sanju.ml.dto.QuoteRequest;
 import org.sanju.ml.rest.Payload;
 import org.sanju.ml.rest.client.impl.DocumentServiceImpl;
 
+
+/**
+ *
+ * @author Sanju Thomas
+ *
+ */
 public class TestDocumentService {
 
 	private DocumentService documentService;
@@ -24,8 +33,20 @@ public class TestDocumentService {
 		this.payload = new Payload<>(new QuoteRequest("Q1", "APPL", 100, client));
 	}
 
+	@After
+	public void tearDown() throws ClientProtocolException, IOException, URISyntaxException{
+		Assert.assertEquals(202, this.documentService.delete("/C1/A1/Q1.json"));
+		System.out.println("test");
+	}
+
 	@Test
 	public void shouldSave() throws IOException, URISyntaxException{
-		System.out.println(this.documentService.save(this.payload));
+		Assert.assertEquals(201, this.documentService.save(this.payload));
+	}
+
+	public void shouldFind() throws ClientProtocolException, IOException, URISyntaxException{
+		this.documentService.save(this.payload);
+		final Object object = this.documentService.get("/C1/A1/Q1.json");
+
 	}
 }

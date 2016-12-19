@@ -7,7 +7,7 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -20,7 +20,7 @@ import org.apache.http.impl.client.HttpClients;
  */
 public class RequestProcessor {
 
-	public static HttpResponse process(final HttpEntityEnclosingRequestBase request) throws ClientProtocolException, IOException {
+	public static HttpResponse process(final HttpRequestBase request) throws ClientProtocolException, IOException {
 
 		final CloseableHttpClient httpClient = HttpClients.createDefault();
 		final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
