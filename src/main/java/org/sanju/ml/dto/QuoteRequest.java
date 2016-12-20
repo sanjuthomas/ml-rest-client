@@ -62,7 +62,7 @@ public class QuoteRequest {
 		builder.append("/");
 		builder.append(this.client.getAccount().getId());
 		builder.append("/");
-		builder.append(this.client.getId());
+		builder.append(this.getId());
 		builder.append(".json");
 		return builder.toString();
 	}

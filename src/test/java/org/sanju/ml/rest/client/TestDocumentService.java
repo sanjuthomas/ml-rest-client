@@ -35,18 +35,17 @@ public class TestDocumentService {
 
 	@After
 	public void tearDown() throws ClientProtocolException, IOException, URISyntaxException{
-		Assert.assertEquals(202, this.documentService.delete("/C1/A1/Q1.json"));
-		System.out.println("test");
+		Assert.assertEquals(204, this.documentService.delete("/C1/A1/Q1.json"));
 	}
 
 	@Test
 	public void shouldSave() throws IOException, URISyntaxException{
 		Assert.assertEquals(201, this.documentService.save(this.payload));
 	}
-
+	
+	@Test
 	public void shouldFind() throws ClientProtocolException, IOException, URISyntaxException{
 		this.documentService.save(this.payload);
-		final Object object = this.documentService.get("/C1/A1/Q1.json");
-
+		Assert.assertNotNull(this.documentService.get("/C1/A1/Q1.json"));
 	}
 }
